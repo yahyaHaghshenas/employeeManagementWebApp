@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to Bootstrap CSS stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-YdSzp7wTXlTLzRrQr5X9q3KdSnSZYfY02R5wD1zTNxL5jvePzZJlct0F9aCfDlJMe1i+jy0SWwcdHcFZtQhZtQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <h1>Heading</h1>
+    <p>Paragraph</p>
+
+    <!-- Bootstrap JavaScript files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-rCt1zy9eLpLyvlD0JwKfS0bK+K7+ZBXpCvVs/wXeXaxXZDnWz5aPvVzs5kLJncnUOmJ+1RzvJrEA6tQf6t8e3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-p/aKDI9yxxSw2lxOQsMPtwj48+zbEVRZ1vkBkzHxJTFpX9Yh0C7J/ZzFbIvdkVhGZbJg7VWxHZ8OdC7H0/e3qA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
+</html>
