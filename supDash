@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HR Dashboard </title>
+    <title>supervisor Dashboard </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Link to stylesheet-->
@@ -19,7 +19,7 @@
     crossorigin="anonymous"></script>  
   </head>
   <body>
-    <h1>Human Resource Admin Dashboard</h1>
+    <h1>supervisor Dashboard</h1>
 
     </body>
 </html>
