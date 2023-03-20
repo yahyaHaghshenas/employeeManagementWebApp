@@ -50,3 +50,13 @@ footer {
     list-style: none;
   }
 
+
+
+#home{
+  /* margin: 0;
+  height: 100%; */
+  background-image: url("homePage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* color: white; */
+}
