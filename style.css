@@ -1,9 +1,21 @@
 
-html, body {
+/* html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-  } 
+  }  */
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  
   
   .wrapper {
     min-height: 100%;
@@ -26,14 +38,12 @@ footer {
     background-color: #333;
     color: #fff;
     padding: 1em;
+    margin: 0;
+    margin-top: auto;
     text-align: center;
-    bottom: 0;
-    position: absolute;
-    right: 0;
-    left: 0;
-  }
+  } 
   
-  footer a {
+   footer a {
     color: #fff;
     text-decoration: none;
   }
@@ -53,8 +63,8 @@ footer {
 
 
 #home{
-  /* margin: 0;
-  height: 100%; */
+  margin: 0;
+  height: 100%;
   background-image: url("homePage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
