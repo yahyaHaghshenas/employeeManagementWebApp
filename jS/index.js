@@ -105,12 +105,23 @@ async function newPassword() {
 async function Init() {
 	let select = document.getElementById("department")
 	let department
+	let requests
+	let numEmp
+
 	await axios.post("http://localhost:3000/departments").then((res) => {
 		department = res.data.data
 	})
 	let first = document.createElement("option")
 	first.innerHTML = "ID-department"
 	select.appendChild(first)
+
+	await axios.post("http://localhost:3000/getDepartmentEmployee").then((res) => {
+		numEmp = res.data
+	})
+
+	await axios.post("http://localhost:3000/getAllFWA").then((res) => {
+		requests = res.data.data
+	})
 
 	department.map((row) => {
 		let op = document.createElement("option")
@@ -119,18 +130,39 @@ async function Init() {
 		select.appendChild(op)
 	})
 
-	let numEmp
-	await axios.post("http://localhost:3000/getDepartmentEmployee").then((res) => {
-		numEmp = res.data
-		document.getElementById("title1").innerHTML =
-			"Human Resources " + numEmp[0].department + " employees"
-		document.getElementById("title2").innerHTML =
-			"Engineering " + numEmp[1].department + " employees"
-		document.getElementById("title3").innerHTML = "Finance " + numEmp[2].department + " employees"
-		document.getElementById("title4").innerHTML = "Security " + numEmp[3].department + " employees"
+	document.getElementById("title1").innerHTML =
+		"Human Resources " + numEmp[0].department + " employees"
+	document.getElementById("title2").innerHTML = "Engineering " + numEmp[1].department + " employees"
+	document.getElementById("title3").innerHTML = "Finance " + numEmp[2].department + " employees"
+	document.getElementById("title4").innerHTML = "Security " + numEmp[3].department + " employees"
+
+	let cont1 = document.getElementById("container1")
+	let cont2 = document.getElementById("container2")
+	let cont3 = document.getElementById("container3")
+	let cont4 = document.getElementById("container4")
+
+	requests.map((req) => {
+		let div = document.createElement("div")
+		let date = req.requestDate.split("T")
+		div.innerHTML = "Employee " + req.employeeID + " request date: " + date[0]
+		console.log(req.departmentID)
+		switch (req.departmentID) {
+			case 1:
+				cont1.appendChild(div)
+				break
+			case 2:
+				cont2.appendChild(div)
+				break
+			case 3:
+				cont3.appendChild(div)
+				break
+			case 4:
+				cont4.appendChild(div)
+				break
+			default:
+				break
+		}
 	})
-	console.log(numEmp)
-	// Department Science 30 Employees
 }
 
 async function onNewEmp() {
@@ -159,4 +191,134 @@ async function onNewEmp() {
 		.catch((err) => {
 			console.log(err)
 		})
+}
+
+async function onDateSelect1() {
+	let date = new Date(document.getElementById("date1").value)
+	let body1 = document.getElementById("body1")
+	date = new Date(date).toISOString().split("T")
+
+	let temp1 = {
+		date: date[0],
+		departmentID: 1,
+	}
+
+	await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+		console.log(res.data.data.length)
+		if (res.data.data.length == 0) {
+			body1.innerHTML = ""
+		} else {
+			body1.innerHTML = ""
+			res.data.data.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				body1.appendChild(tr)
+			})
+		}
+	})
+}
+
+async function onDateSelect2() {
+	let date = new Date(document.getElementById("date2").value)
+	let body1 = document.getElementById("body2")
+	date = new Date(date).toISOString().split("T")
+
+	let temp1 = {
+		date: date[0],
+		departmentID: 2,
+	}
+
+	await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+		console.log(res.data.data.length)
+		if (res.data.data.length == 0) {
+			body1.innerHTML = ""
+		} else {
+			body1.innerHTML = ""
+			res.data.data.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				body1.appendChild(tr)
+			})
+		}
+	})
+}
+async function onDateSelect3() {
+	let date = new Date(document.getElementById("date3").value)
+	let body1 = document.getElementById("body3")
+	date = new Date(date).toISOString().split("T")
+
+	let temp1 = {
+		date: date[0],
+		departmentID: 3,
+	}
+
+	await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+		console.log(res.data.data.length)
+		if (res.data.data.length == 0) {
+			body1.innerHTML = ""
+		} else {
+			body1.innerHTML = ""
+			res.data.data.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				body1.appendChild(tr)
+			})
+		}
+	})
+}
+async function onDateSelect4() {
+	let date = new Date(document.getElementById("date4").value)
+	let body1 = document.getElementById("body4")
+	date = new Date(date).toISOString().split("T")
+
+	let temp1 = {
+		date: date[0],
+		departmentID: 4,
+	}
+
+	await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+		console.log(res.data.data.length)
+		if (res.data.data.length == 0) {
+			body1.innerHTML = ""
+		} else {
+			body1.innerHTML = ""
+			res.data.data.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				body1.appendChild(tr)
+			})
+		}
+	})
 }
