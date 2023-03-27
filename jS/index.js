@@ -322,3 +322,28 @@ async function onDateSelect4() {
 		}
 	})
 }
+
+//* empDash page
+
+function requestFWA() {
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+	let WT = document.getElementById("workType").value
+	let description = document.getElementById("description").value
+	let reason = document.getElementById("reason").value
+
+	let temp = {
+		workType: WT,
+		description: description,
+		reason: reason,
+		employeeID: currentUser.employeeID,
+		departmentID: currentUser.departmentID,
+	}
+	console.log(temp)
+	axios.post("http://localhost:3000/requestFWA", temp).then((res) => {
+		console.log(res)
+	})
+}
+
+function updateDaily() {
+  
+}
