@@ -340,7 +340,7 @@ function requestFWA() {
 	}
 	console.log(temp)
 	axios.post("http://localhost:3000/requestFWA", temp).then((res) => {
-		console.log(res)
+		alert("FWA Requested")
 	})
 }
 
@@ -365,4 +365,132 @@ function updateDaily() {
 	axios.post("http://localhost:3000/addDaily", temp).then((res) => {
 		alert("update successful")
 	})
+}
+
+//*supervisor
+
+async function init() {
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+
+	let temp = {
+		supervisorID: currentUser.employeeID,
+	}
+
+	axios.post("http://localhost:3000/getFWA", temp).then((res) => {
+		console.log(res.data.data)
+
+		async function acceptSubmit(reqID, comment) {
+			let temp = {
+				requestID: reqID,
+				comment: comment,
+				status: "Approved",
+			}
+			console.log(temp)
+			await axios.post("http://localhost:3000/updateFWA", temp).then((res) => {
+				console.log("request has been accepted")
+				console.log(res)
+				location.reload()
+			})
+		}
+		async function rejectSubmit(reqID, comment) {
+			let temp = {
+				requestID: reqID,
+				comment: comment,
+				status: "Rejected",
+			}
+			console.log(temp)
+			await axios.post("http://localhost:3000/updateFWA", temp).then((res) => {
+				console.log("request has been rejected")
+				console.log(res)
+				location.reload()
+			})
+		}
+
+		let data = res.data.data
+		data.map((row, i) => {
+			let tr = document.createElement("tr")
+			let th = document.createElement("th")
+			let td = document.createElement("td")
+			let accordion = document.createElement("div")
+			accordion.classList.add("accordion")
+			let accordionItem = document.createElement("div")
+			accordionItem.classList.add("accordion-item")
+			let accordionHeader = document.createElement("h2")
+			accordionHeader.classList.add("accordion-header")
+			let accordionButton = document.createElement("button")
+			let accordionCollapse = document.createElement("div")
+			let accordionBody = document.createElement("div")
+			accordionBody.classList.add("accordion-body")
+			let reason = document.createElement("div")
+			let description = document.createElement("div")
+			let buttonContainer = document.createElement("div")
+			let accept = document.createElement("button")
+			let reject = document.createElement("button")
+			let commentInput = document.createElement("input")
+			commentInput.id = "comment" + i
+			commentInput.placeholder = "write your comment here"
+			commentInput.classList.add("form-control")
+
+			buttonContainer.classList.add("d-grid")
+			buttonContainer.classList.add("dgap-2")
+			buttonContainer.classList.add("col-6")
+			buttonContainer.classList.add("mx-auto")
+
+			accept.style.marginBottom = "28px"
+			accept.innerHTML = "Accept"
+			accept.classList.add("btn")
+			accept.classList.add("btn-primary")
+			accept.onclick = () => acceptSubmit(row.requestID, commentInput.value)
+
+			reject.style.marginBottom = "28px"
+			reject.innerHTML = "Reject"
+			reject.classList.add("btn")
+			reject.classList.add("btn-primary")
+			reject.onclick = () => rejectSubmit(row.requestID, commentInput.value)
+
+			reason.innerHTML = "Reason: " + row.reason
+			description.innerHTML = "Description: " + row.description
+
+			th.style.width = "50px"
+			th.innerHTML = row.requestID
+			accordionHeader.id = "heading" + i
+			accordion.id = "#accordionExample" + i
+			accordionCollapse.classList.add("accordion-collapse")
+			accordionCollapse.classList.add("collapse")
+			accordionCollapse.id = "collapse" + i
+			accordionCollapse.setAttribute("aria-labelledby", "heading" + i)
+			accordionCollapse.setAttribute("data-bs-parent", "#accordionExample" + i)
+
+			accordionButton.classList.add("accordion-button")
+			accordionButton.innerHTML = "yes"
+			accordionButton.setAttribute("data-bs-toggle", "collapse")
+			accordionButton.setAttribute("data-bs-target", "#collapse" + i)
+			accordionButton.setAttribute("aria-controls", "collapse" + i)
+			accordionButton.ariaExpanded = true
+			accordionButton.innerHTML = "EmployeeID: " + row.employeeID
+			buttonContainer.appendChild(accept)
+			buttonContainer.appendChild(reject)
+			accordionBody.appendChild(description)
+			accordionBody.appendChild(reason)
+			accordionBody.appendChild(buttonContainer)
+			accordionBody.appendChild(commentInput)
+			accordionHeader.appendChild(accordionButton)
+			accordionItem.appendChild(accordionHeader)
+			accordionCollapse.appendChild(accordionBody)
+			accordionItem.appendChild(accordionCollapse)
+			accordion.appendChild(accordionItem)
+			td.appendChild(accordion)
+			tr.appendChild(th)
+			tr.appendChild(td)
+			let ye = document.getElementById("ye")
+			ye.appendChild(tr)
+		})
+	})
+
+	// 	await let title10 = document.getElementById("title10")
+	// 	title10.classList.add("accordion-button")
+	// }
+
+	// {
+	/* <div class="accordion-body"></div> */
 }
