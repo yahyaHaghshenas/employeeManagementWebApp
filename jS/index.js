@@ -369,7 +369,7 @@ function updateDaily() {
 
 //*supervisor
 
-async function init() {
+async function initSup() {
 	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
 
 	let temp = {
@@ -487,6 +487,41 @@ async function init() {
 		})
 	})
 
+	let requests
+	let numEmp
+
+let depTemp = {
+  departmentID: currentUser.departmentID
+}
+
+	await axios.post("http://localhost:3000/GetDepartmentByDepartmentID", depTemp).then((res) => {
+		department = res.data.data[0]
+    console.log(department);
+	})
+
+	await axios.post("http://localhost:3000/getDepartmentEmployee").then((res) => {
+		numEmp = res.data
+	})
+
+	await axios.post("http://localhost:3000/GetFwaByDepartment", depTemp).then((res) => {
+		requests = res.data.data
+    console.log(requests);
+	})
+
+	document.getElementById("title1").innerHTML =
+		department.deptName + " " + numEmp[department.deptID - 1].department + " employees"
+
+	let cont1 = document.getElementById("container1")
+
+	requests.map((req) => {
+		let div = document.createElement("div")
+		let date = req.requestDate.split("T")
+		div.innerHTML = "Employee " + req.employeeID + " request date: " + date[0]
+		console.log(req.departmentID)
+		cont1.appendChild(div)
+	})
+
+  
 	// 	await let title10 = document.getElementById("title10")
 	// 	title10.classList.add("accordion-button")
 	// }
@@ -494,3 +529,37 @@ async function init() {
 	// {
 	/* <div class="accordion-body"></div> */
 }
+
+async function onDateSelect() {
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  let date = new Date(document.getElementById("date1").value)
+    let body1 = document.getElementById("body1")
+    date = new Date(date).toISOString().split("T")
+  
+    let temp1 = {
+      date: date[0],
+      departmentID: currentUser.departmentID,
+    }
+  
+    await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+      console.log(res.data.data.length)
+      if (res.data.data.length == 0) {
+        body1.innerHTML = ""
+      } else {
+        body1.innerHTML = ""
+        res.data.data.map((row) => {
+          let tr = document.createElement("tr")
+          let th = document.createElement("th")
+          let tdLoc = document.createElement("td")
+          let tdHour = document.createElement("td")
+          th.innerHTML = row.employeeID
+          tdHour.innerHTML = row.workHours
+          tdLoc.innerHTML = row.workLocation
+          tr.appendChild(th)
+          tr.appendChild(tdLoc)
+          tr.appendChild(tdHour)
+          body1.appendChild(tr)
+        })
+      }
+    })
+  }

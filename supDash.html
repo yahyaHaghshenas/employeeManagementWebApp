@@ -1,507 +1,428 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Supervisor Dashboard </title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Link to stylesheet-->
-    <link rel="stylesheet" href="style.css">
-    <!-- Link to Bootstrap CSS stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
-    crossorigin="anonymous">
-    <!--script-->
+	<head>
+		<title>Supervisor Dashboard</title>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<!--Link to stylesheet-->
+		<link
+			rel="stylesheet"
+			href="style.css" />
+		<!-- Link to Bootstrap CSS stylesheet -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+			crossorigin="anonymous" />
+		<!--script-->
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="" ></script>
-    <!--bootstrap script-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
-    crossorigin="anonymous"></script> 
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
+		<script src=""></script>
+		<!--bootstrap script-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+			crossorigin="anonymous"></script>
+
+		<!-- <script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"></script> -->
+	</head>
+	<body onload="initSup()">
+		<!--navbar-->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a
+					class="navbar-brand"
+					href="index.html"
+					>FlexIs</a
+				>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div
+					class="collapse navbar-collapse"
+					id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a
+								class="nav-link active"
+								aria-current="page"
+								href="index.html"
+								>Home</a
+							>
+						</li>
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								href="about.html"
+								>About Us</a
+							>
+						</li>
+					</ul>
+					<form
+						class="d-flex"
+						role="search">
+						<button
+							class="btn btn-outline-success"
+							type="submit">
+							<a
+								class="nav-link active"
+								aria-current="page"
+								href="index.html"
+								>logout</a
+							>
+						</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<!--end of nav-->
+		<!--content-->
+		<div class="container">
+			<h1>Welcom Supervisor XXXXX</h1>
+			<hr />
 
-
-  </head>
-  <body onload="init()">
-      <!--navbar-->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a
-            class="navbar-brand"
-            href="index.html"
-            >FlexIs</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse"
-            id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="about.html"
-                  >About Us</a
-                >
-              </li>
-            </ul>
-            <form
-              class="d-flex"
-              role="search">
-              <button
-                class="btn btn-outline-success"
-                type="submit">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="index.html"
-                  >logout</a
-                >
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav>
-      <!--end of nav-->
-      <!--content-->
-      <div class="container">
-        <h1>Welcom Supervisor XXXXX</h1>
-        <hr>
-
-      
-        <!-- <div>
+			<!-- <div>
           <button type="button" class="btn btn-primary">Review FWA Request</button>
           <button type="button" class="btn btn-primary">View FWA Analytics</button>
           <button type="button" class="btn btn-primary">Review Schedules</button>
         </div> -->
-       
-        
-        
 
+			<!--Review FWA Requst-->
+			<section id="review">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">ReqID</th>
+							<th scope="col">Review FWA Requests</th>
+						</tr>
+					</thead>
+					<tbody id="ye"></tbody>
+				</table>
+			</section>
 
-        <!--Review FWA Requst-->
-        <section id="review">
-          
-          <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">ReqID</th>
-                <th scope="col">Review FWA Requests</th>
-            </tr>
-            </thead>
-            <tbody
-          id="ye"
-          >
-            </tbody>
-          </table>
-        </section>
-        
+			<hr class="my-5" />
 
-        <hr class="my-5">
+			<!-- Review FWA Analaytics-->
+			<section id="fwa">
+				<h2>review FWA Analytics</h2>
+				<div>
+					<!--table-->
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Department ID</th>
+								<th scope="col">Department Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample1">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne"
+													id="title1"></button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample1">
+												<div
+													class="accordion-body"
+													id="container1"></div>
+												<div class="accordion-body">
+													<br />
+													<input
+														onchange="onDateSelect()"
+														type="date"
+														id="date1" />
+												</div>
+												<div class="accordion-body">
+													<table class="table">
+														<thead>
+															<tr>
+																<th scope="col">EmpID</th>
+																<th scope="col">Location</th>
+																<th scope="col">hours</th>
+															</tr>
+														</thead>
+														<tbody id="body1"></tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
 
-        <!-- Review FWA Analaytics-->
-        <section id="fwa">
-          <div>
-              <!--table-->
-              <table class="table">
-                  <thead>
-                  <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">View FWA Analaytics</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                      <div class="accordion" id="accordionExample">
-                          <div class="accordion-item">
-                          <h2 class="accordion-header" id="headingOne">
-                              <button
-                              class="accordion-button"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#collapseOne"
-                              aria-expanded="true"
-                              aria-controls="collapseOne"
-                              >
-                              Department Science 30 Employees
-                              </button>
-                          </h2>
-                          <div
-                              id="collapseOne"
-                              class="accordion-collapse collapse show"
-                              aria-labelledby="headingOne"
-                              data-bs-parent="#accordionExample"
-                          >
-                              <div class="accordion-body">
-                              
-                              <div>Employee 1  request date: 01/01/ 2023</div>
-                              <div>Employee 2  request date: 01/01/ 2023</div>
-                              <div>Employee 3  request date: 01/01/ 2023</div>
-                              <div>Employee 4  request date: 01/01/ 2023</div>
-                              <input type="date">
-                              <br>
-                              <p><b>The work location and working hours for employees in the department is summarized for each date in the date range.</b></p>
-                              </div>
-                          </div>
-                          </div>
-                      </div>
-                      </td>
-                  </tr>
-      
-                  <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                      <div class="accordion" id="accordionExample">
-                          <div class="accordion-item">
-                          <h2 class="accordion-header" id="headingTwo">
-                              <button
-                              class="accordion-button"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#collapseTwo"
-                              aria-expanded="true"
-                              aria-controls="collapseTwo"
-                              >
-                              Department Finance 20 Employees
-                              </button>
-                          </h2>
-                          <div
-                              id="collapseTwo"
-                              class="accordion-collapse collapse show"
-                              aria-labelledby="headingTwo"
-                              data-bs-parent="#accordionExample"
-                          >
-                          <div>Employee 1  request date: 01/01/ 2023</div>
-                          <div>Employee 2  request date: 01/01/ 2023</div>
-                          <div>Employee 3  request date: 01/01/ 2023</div>
-                          <div>Employee 4  request date: 01/01/ 2023</div>
-                          <input type="date">
-                          <br>
-                          <p><b>The work location and working hours for employees in the department is summarized for each date in the date range.</b></p>
-                              </div>
-                          </div>
-                          </div>
-                      </div>
-                      </td>
-                  </tr>
-                  </tbody>
-              </table>
-          </div>
-        </section>
+			<section>
+				<div>
+					<!--table-->
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Review Daily Schedules</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne">
+													Monday
+												</button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<div>Employee 1 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 2 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 3 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 4 Location: Work hours: 10-6 Report:</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
 
-        <section>
-          <div>
-            <!--table-->
-            <table class="table">
-                <thead>
-                  <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Review Daily Schedules</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button
-                                  class="accordion-button"
-                                  type="button"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#collapseOne"
-                                  aria-expanded="true"
-                                  aria-controls="collapseOne"
-                                  >
-                                  Monday
-                                  </button>
-                              </h2>
-                              <div
-                                  id="collapseOne"
-                                  class="accordion-collapse collapse show"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                  
-                                    <div>Employee 1
-                                        Location:  
-                                        Work hours: 10-6 
-                                        Report:
-                                    </div>
-                                    <div>Employee 2
-                                        Location:  
-                                        Work hours: 10-6 
-                                        Report:
-                                      </div>
-                                    <div>Employee 3 
-                                      Location: 
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                    <div>Employee 4
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:</div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-    
-                    <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button
-                                  class="accordion-button"
-                                  type="button"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#collapseOne"
-                                  aria-expanded="true"
-                                  aria-controls="collapseOne"
-                                  >
-                                  Tuesday
-                                  </button>
-                              </h2>
-                              <div
-                                  id="collapseOne"
-                                  class="accordion-collapse collapse show"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                  
-                                    <div>Employee 1 
-                                        Location: 
-                                        Work hours: 10-6 
-                                        Report:
-                                    </div>
-                                    <div>Employee 2
-                                        Location:  
-                                        Work hours: 10-6 
-                                        Report:
-                                      </div>
-                                    <div>Employee 3
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                    <div>Employee 4 
-                                      Location: 
-                                      Work hours: 10-6
-                                      Report:</div>
-                                    
-                                    
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button
-                                  class="accordion-button"
-                                  type="button"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#collapseOne"
-                                  aria-expanded="true"
-                                  aria-controls="collapseOne"
-                                  >
-                                  Wednesday
-                                  </button>
-                              </h2>
-                              <div
-                                  id="collapseOne"
-                                  class="accordion-collapse collapse show"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                  
-                                    <div>Employee 1 
-                                        Location: 
-                                        Work hours: 10-6 
-                                        Report:
-                                    </div>
-                                    <div>Employee 2
-                                        Location:  
-                                        Work hours: 10-6 
-                                        Report:
-                                      </div>
-                                    <div>Employee 3
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                    <div>Employee 4 
-                                      Location: 
-                                      Work hours: 10-6
-                                      Report:</div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button
-                                  class="accordion-button"
-                                  type="button"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#collapseOne"
-                                  aria-expanded="true"
-                                  aria-controls="collapseOne"
-                                  >
-                                  Thursday
-                                  </button>
-                              </h2>
-                              <div
-                                  id="collapseOne"
-                                  class="accordion-collapse collapse show"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                  
-                                    <div>Employee 1 
-                                        Location: 
-                                        Work hours: 10-6 
-                                        Report:
-                                    </div>
-                                    <div>Employee 2
-                                        Location:  
-                                        Work hours: 10-6 
-                                        Report:
-                                      </div>
-                                    <div>Employee 3 
-                                      Location: 
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                    <div>Employee 4
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:</div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="width: 50px">1</th>
-                      <td>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button
-                                  class="accordion-button"
-                                  type="button"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#collapseOne"
-                                  aria-expanded="true"
-                                  aria-controls="collapseOne"
-                                  >
-                                  Friday
-                                  </button>
-                              </h2>
-                              <div
-                                  id="collapseOne"
-                                  class="accordion-collapse collapse show"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">
-                                  
-                                    <div>Employee 1 
-                                        Location: 
-                                        Work hours: 10-6 
-                                        Report:
-                                    </div>
-                                    <div>Employee 2  
-                                        Location:
-                                        Work hours: 10-6 
-                                        Report:
-                                      </div>
-                                    <div>Employee 3
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                    <div>Employee 4
-                                      Location:  
-                                      Work hours: 10-6
-                                      Report:
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>  
-                </tbody>
-              </table>
-          </div>
-        </section>
-      </div>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne">
+													Tuesday
+												</button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<div>Employee 1 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 2 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 3 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 4 Location: Work hours: 10-6 Report:</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne">
+													Wednesday
+												</button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<div>Employee 1 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 2 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 3 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 4 Location: Work hours: 10-6 Report:</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne">
+													Thursday
+												</button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<div>Employee 1 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 2 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 3 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 4 Location: Work hours: 10-6 Report:</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th
+									scope="row"
+									style="width: 50px">
+									1
+								</th>
+								<td>
+									<div
+										class="accordion"
+										id="accordionExample">
+										<div class="accordion-item">
+											<h2
+												class="accordion-header"
+												id="headingOne">
+												<button
+													class="accordion-button"
+													type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#collapseOne"
+													aria-expanded="true"
+													aria-controls="collapseOne">
+													Friday
+												</button>
+											</h2>
+											<div
+												id="collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="headingOne"
+												data-bs-parent="#accordionExample">
+												<div class="accordion-body">
+													<div>Employee 1 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 2 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 3 Location: Work hours: 10-6 Report:</div>
+													<div>Employee 4 Location: Work hours: 10-6 Report:</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
 
-
-
-      
-      
-      
-      <!--footer-->
-      <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-            <h3>FlexIS</h3>
-            <p>A solution for managing flexible work arrangements</p>
-            </div>
-            <div class="footer-right">
-            <h4>Links</h4>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>Copyright &copy; FlexIS 2023</p>
-        </div>
-    </footer>
+		<!--footer-->
+		<footer>
+			<div class="footer-container">
+				<div class="footer-left">
+					<h3>FlexIS</h3>
+					<p>A solution for managing flexible work arrangements</p>
+				</div>
+				<div class="footer-right">
+					<h4>Links</h4>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<p>Copyright &copy; FlexIS 2023</p>
+			</div>
+		</footer>
 
 		<script src="/jS/index.js"></script>
-  </body>
-    
+	</body>
 </html>
