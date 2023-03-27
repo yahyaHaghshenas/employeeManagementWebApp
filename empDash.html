@@ -133,7 +133,7 @@
 			<hr />
 
 			<h1>Update Daily Schedule</h1>
-			<form>
+			<form onsubmit="return false">
 				<div class="row mb-3">
 					<label
 						for="date"
@@ -164,30 +164,32 @@
 					<label
 						for="location"
 						class="col-sm-2 col-form-label"
-						>Location</label
+						>Work Hour</label
 					>
 					<div class="col-sm-10">
 						<select
+							id="workHour"
 							class="form-control"
 							style="width: 30%">
 							<option selected>Select</option>
-							<option>8 - 4</option>
-							<option>9 - 5</option>
-							<option>10 - 6</option>
+							<option value="8AM-4PM">8AM - 4PM</option>
+							<option value="9AM-5PM">9AM - 5PM</option>
+							<option value="10AM-6PM">10AM - 6PM</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="form-floating">
 					<textarea
+						id="report"
 						class="form-control my-3"
 						placeholder="Leave Your Report Here"
-						id=""
 						style="height: 100px"></textarea>
 					<label for="floatingTextarea2">Report</label>
 				</div>
 				<button
 					type="submit"
+					onclick="updateDaily()"
 					class="btn btn-primary">
 					Update
 				</button>

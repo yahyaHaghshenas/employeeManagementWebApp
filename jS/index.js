@@ -345,5 +345,24 @@ function requestFWA() {
 }
 
 function updateDaily() {
-  
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+	let location = document.getElementById("location").value
+	let date = document.getElementById("date").value
+	let workHours = document.getElementById("workHour").value
+	let report = document.getElementById("report").value
+
+	date = new Date(date).toISOString().split("T")
+
+	let temp = {
+		employeeID: currentUser.employeeID,
+		departmentID: currentUser.departmentID,
+		date: date,
+		workHours: workHours,
+		workReport: report,
+		workLocation: location,
+	}
+
+	axios.post("http://localhost:3000/addDaily", temp).then((res) => {
+		alert("update successful")
+	})
 }
