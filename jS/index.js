@@ -462,7 +462,6 @@ async function initSup() {
 			accordionCollapse.setAttribute("data-bs-parent", "#accordionExample" + i)
 
 			accordionButton.classList.add("accordion-button")
-			accordionButton.innerHTML = "yes"
 			accordionButton.setAttribute("data-bs-toggle", "collapse")
 			accordionButton.setAttribute("data-bs-target", "#collapse" + i)
 			accordionButton.setAttribute("aria-controls", "collapse" + i)
@@ -490,13 +489,13 @@ async function initSup() {
 	let requests
 	let numEmp
 
-let depTemp = {
-  departmentID: currentUser.departmentID
-}
+	let depTemp = {
+		departmentID: currentUser.departmentID,
+	}
 
 	await axios.post("http://localhost:3000/GetDepartmentByDepartmentID", depTemp).then((res) => {
 		department = res.data.data[0]
-    console.log(department);
+		console.log(department)
 	})
 
 	await axios.post("http://localhost:3000/getDepartmentEmployee").then((res) => {
@@ -505,7 +504,7 @@ let depTemp = {
 
 	await axios.post("http://localhost:3000/GetFwaByDepartment", depTemp).then((res) => {
 		requests = res.data.data
-    console.log(requests);
+		console.log(requests)
 	})
 
 	document.getElementById("title1").innerHTML =
@@ -521,7 +520,282 @@ let depTemp = {
 		cont1.appendChild(div)
 	})
 
-  
+	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+	let d = new Date()
+	let day = d.getDay()
+	// let today = d.get()
+	function getWeek(fromDate) {
+		var sunday = new Date(fromDate.setDate(fromDate.getDate() - fromDate.getDay())),
+			result = [new Date(sunday)]
+		while (sunday.setDate(sunday.getDate() + 1) && sunday.getDay() !== 0) {
+			result.push(new Date(sunday))
+		}
+		return result
+	}
+	// usage
+	var week = getWeek(d)
+	//  console.log(week[0].toISOString().split("T")[0]);
+
+	let dateTemp = [
+		{
+			date: week[1].toISOString().split("T")[0],
+			departmentID: currentUser.departmentID,
+		},
+		{
+			date: week[2].toISOString().split("T")[0],
+			departmentID: currentUser.departmentID,
+		},
+		{
+			date: week[3].toISOString().split("T")[0],
+			departmentID: currentUser.departmentID,
+		},
+		{
+			date: week[4].toISOString().split("T")[0],
+			departmentID: currentUser.departmentID,
+		},
+		{
+			date: week[5].toISOString().split("T")[0],
+			departmentID: currentUser.departmentID,
+		},
+	]
+
+	await axios.post("http://localhost:3000/getDailyDate", dateTemp[0]).then((res) => {
+		console.log(res.data.data)
+		let respond = res.data.data
+		if (respond != []) {
+			respond.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				let tdReport = document.createElement("td")
+				let tdCheckBox = document.createElement("td")
+				let checkBox = document.createElement("input")
+				let body = document.getElementById("body10")
+
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tdReport.innerHTML = row.workReport
+				checkBox.value = row.dailyID
+				checkBox.type = "radio"
+				checkBox.name = "depID10"
+				tdCheckBox.appendChild(checkBox)
+				tr.appendChild(tdCheckBox)
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				tr.appendChild(tdReport)
+				body.appendChild(tr)
+			})
+
+			let cont = document.getElementById("cont10")
+			let comment = document.createElement("input")
+			let submit = document.createElement("button")
+			comment.placeholder = "place you comment here"
+			comment.classList.add("form-control")
+			comment.style.marginBottom = "28px"
+			comment.id = "comment10"
+			submit.classList.add("btn")
+			submit.classList.add("btn-primary")
+			submit.ariaExpanded = true
+			submit.innerHTML = "Submit"
+
+			submit.onclick = () => onDailySubmit("10")
+			cont.appendChild(comment)
+			cont.appendChild(submit)
+		}
+	})
+
+	await axios.post("http://localhost:3000/getDailyDate", dateTemp[1]).then((res) => {
+		console.log(res.data.data)
+		let respond = res.data.data
+		if (respond != []) {
+			respond.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				let tdReport = document.createElement("td")
+				let tdCheckBox = document.createElement("td")
+				let checkBox = document.createElement("input")
+				let body = document.getElementById("body11")
+
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tdReport.innerHTML = row.workReport
+				checkBox.value = row.dailyID
+				checkBox.type = "radio"
+				checkBox.name = "depID11"
+				tdCheckBox.appendChild(checkBox)
+				tr.appendChild(tdCheckBox)
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				tr.appendChild(tdReport)
+				body.appendChild(tr)
+			})
+
+			let cont = document.getElementById("cont11")
+			let comment = document.createElement("input")
+			let submit = document.createElement("button")
+			comment.placeholder = "place you comment here"
+			comment.classList.add("form-control")
+			comment.style.marginBottom = "28px"
+			comment.id = "comment11"
+			submit.classList.add("btn")
+			submit.classList.add("btn-primary")
+			submit.ariaExpanded = true
+			submit.innerHTML = "Submit"
+
+			submit.onclick = () => onDailySubmit("11")
+			cont.appendChild(comment)
+			cont.appendChild(submit)
+		}
+	})
+	await axios.post("http://localhost:3000/getDailyDate", dateTemp[2]).then((res) => {
+		console.log(res.data.data)
+		let respond = res.data.data
+		if (respond != []) {
+			respond.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				let tdReport = document.createElement("td")
+				let tdCheckBox = document.createElement("td")
+				let checkBox = document.createElement("input")
+				let body = document.getElementById("body12")
+
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tdReport.innerHTML = row.workReport
+				checkBox.value = row.dailyID
+				checkBox.type = "radio"
+				checkBox.name = "depID12"
+				tdCheckBox.appendChild(checkBox)
+				tr.appendChild(tdCheckBox)
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				tr.appendChild(tdReport)
+				body.appendChild(tr)
+			})
+
+			let cont = document.getElementById("cont12")
+			let comment = document.createElement("input")
+			let submit = document.createElement("button")
+			comment.placeholder = "place you comment here"
+			comment.classList.add("form-control")
+			comment.style.marginBottom = "28px"
+			comment.id = "comment11"
+			submit.classList.add("btn")
+			submit.classList.add("btn-primary")
+			submit.ariaExpanded = true
+			submit.innerHTML = "Submit"
+
+			submit.onclick = () => onDailySubmit("12")
+			cont.appendChild(comment)
+			cont.appendChild(submit)
+		}
+	})
+	await axios.post("http://localhost:3000/getDailyDate", dateTemp[3]).then((res) => {
+		console.log(res.data.data)
+		let respond = res.data.data
+		if (respond != []) {
+			respond.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				let tdReport = document.createElement("td")
+				let tdCheckBox = document.createElement("td")
+				let checkBox = document.createElement("input")
+				let body = document.getElementById("body113")
+
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tdReport.innerHTML = row.workReport
+				checkBox.value = row.dailyID
+				checkBox.type = "radio"
+				checkBox.name = "depID13"
+				tdCheckBox.appendChild(checkBox)
+				tr.appendChild(tdCheckBox)
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				tr.appendChild(tdReport)
+				body.appendChild(tr)
+			})
+
+			let cont = document.getElementById("cont13")
+			let comment = document.createElement("input")
+			let submit = document.createElement("button")
+			comment.placeholder = "place you comment here"
+			comment.classList.add("form-control")
+			comment.style.marginBottom = "28px"
+			comment.id = "comment13"
+			submit.classList.add("btn")
+			submit.classList.add("btn-primary")
+			submit.ariaExpanded = true
+			submit.innerHTML = "Submit"
+
+			submit.onclick = () => onDailySubmit("13")
+			cont.appendChild(comment)
+			cont.appendChild(submit)
+		}
+	})
+	await axios.post("http://localhost:3000/getDailyDate", dateTemp[4]).then((res) => {
+		console.log(res.data.data)
+		let respond = res.data.data
+		if (respond != []) {
+			respond.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				let tdReport = document.createElement("td")
+				let tdCheckBox = document.createElement("td")
+				let checkBox = document.createElement("input")
+				let body = document.getElementById("body14")
+
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tdReport.innerHTML = row.workReport
+				checkBox.value = row.dailyID
+				checkBox.type = "radio"
+				checkBox.name = "depID14"
+				tdCheckBox.appendChild(checkBox)
+				tr.appendChild(tdCheckBox)
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				tr.appendChild(tdReport)
+				body.appendChild(tr)
+			})
+
+			let cont = document.getElementById("cont14")
+			let comment = document.createElement("input")
+			let submit = document.createElement("button")
+			comment.placeholder = "place you comment here"
+			comment.classList.add("form-control")
+			comment.style.marginBottom = "28px"
+			comment.id = "comment14"
+			submit.classList.add("btn")
+			submit.classList.add("btn-primary")
+			submit.ariaExpanded = true
+			submit.innerHTML = "Submit"
+
+			submit.onclick = () => onDailySubmit("14")
+			cont.appendChild(comment)
+			cont.appendChild(submit)
+		}
+	})
+
 	// 	await let title10 = document.getElementById("title10")
 	// 	title10.classList.add("accordion-button")
 	// }
@@ -532,34 +806,51 @@ let depTemp = {
 
 async function onDateSelect() {
 	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
-  let date = new Date(document.getElementById("date1").value)
-    let body1 = document.getElementById("body1")
-    date = new Date(date).toISOString().split("T")
-  
-    let temp1 = {
-      date: date[0],
-      departmentID: currentUser.departmentID,
-    }
-  
-    await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
-      console.log(res.data.data.length)
-      if (res.data.data.length == 0) {
-        body1.innerHTML = ""
-      } else {
-        body1.innerHTML = ""
-        res.data.data.map((row) => {
-          let tr = document.createElement("tr")
-          let th = document.createElement("th")
-          let tdLoc = document.createElement("td")
-          let tdHour = document.createElement("td")
-          th.innerHTML = row.employeeID
-          tdHour.innerHTML = row.workHours
-          tdLoc.innerHTML = row.workLocation
-          tr.appendChild(th)
-          tr.appendChild(tdLoc)
-          tr.appendChild(tdHour)
-          body1.appendChild(tr)
-        })
-      }
-    })
-  }
+	let date = new Date(document.getElementById("date1").value)
+	let body1 = document.getElementById("body1")
+	date = new Date(date).toISOString().split("T")
+
+	let temp1 = {
+		date: date[0],
+		departmentID: currentUser.departmentID,
+	}
+
+	await axios.post("http://localhost:3000/getDailyDate", temp1).then((res) => {
+		console.log(res.data.data.length)
+		if (res.data.data.length == 0) {
+			body1.innerHTML = ""
+		} else {
+			body1.innerHTML = ""
+			res.data.data.map((row) => {
+				let tr = document.createElement("tr")
+				let th = document.createElement("th")
+				let tdLoc = document.createElement("td")
+				let tdHour = document.createElement("td")
+				th.innerHTML = row.employeeID
+				tdHour.innerHTML = row.workHours
+				tdLoc.innerHTML = row.workLocation
+				tr.appendChild(th)
+				tr.appendChild(tdLoc)
+				tr.appendChild(tdHour)
+				body1.appendChild(tr)
+			})
+		}
+	})
+}
+
+async function onDailySubmit(val) {
+	let radioValue = document.querySelector("input[name=depID" + val + "]:checked").value
+	let commentValue = document.getElementById("comment" + val).value
+
+	let dataTemp = {
+		dailyID: radioValue,
+		comment: commentValue,
+	}
+	console.log(commentValue)
+	console.log(dataTemp)
+	if (dataTemp.comment != "") {
+		axios.post("http://localhost:3000/commentDaily", dataTemp).then((res) => {
+			alert("comment added successfully")
+		})
+	}
+}
