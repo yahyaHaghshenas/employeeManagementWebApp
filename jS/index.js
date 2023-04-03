@@ -103,6 +103,9 @@ async function newPassword() {
 //* hrdash page
 
 async function Init() {
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+	let headerTitle = document.getElementById("h1_title")
+	headerTitle.innerHTML = "Welcome Supervisor " + currentUser.name
 	let select = document.getElementById("department")
 	let department
 	let requests
@@ -325,6 +328,12 @@ async function onDateSelect4() {
 
 //* empDash page
 
+function initEmp() {
+	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
+	let headerTitle = document.getElementById("h1_title")
+	headerTitle.innerHTML = "Welcome Supervisor " + currentUser.name
+}
+
 function requestFWA() {
 	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
 	let WT = document.getElementById("workType").value
@@ -371,7 +380,8 @@ function updateDaily() {
 
 async function initSup() {
 	let currentUser = JSON.parse(localStorage.getItem("currentUser"))
-
+	let headerTitle = document.getElementById("h1_title")
+	headerTitle.innerHTML = "Welcome Supervisor " + currentUser.name
 	let temp = {
 		supervisorID: currentUser.employeeID,
 	}
